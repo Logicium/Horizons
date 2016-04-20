@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incubator Prototype</title>
+    <script src="jquery-2.2.0.min.js"></script>
+
+</head>
+<body>
+
+    <div id="prototype"></div>
+    <div id="theWorld"></div>
+    <script>
+
+        function jshtmlCloningFactory(ordinaryJSVariable,className){
+            prototypeContainer = $('#prototype').clone();
+            prototypeContainer.attr('data-function',String(ordinaryJSVariable));
+            prototypeContainer.addClass(String(className));
+            $("#theWorld").append(prototypeContainer);
+            var enhancedJSHTMLVariable = prototypeContainer;
+            return enhancedJSHTMLVariable;
+        }
+
+        function newVariable(value,className){
+           return jshtmlCloningFactory(value,className);
+        }
+
+        var imBetter = newVariable("Hello, I'm an enhanced variable",'sad');
+
+        for(var k =0;k<4;k++){
+            var random1 = newVariable("I'm a future js function.",'happy');
+        }
+
+        for(var k =0;k<2;k++){
+            var random2 = newVariable(k+4,'sad');
+        }
+
+        var allBetter = $('#theWorld').find('.happy');
+
+        console.log("Reading imBetter\'s data function "+imBetter.attr('data-function'));
+        console.log("Length of Variables with class \'happy\'"+allBetter.length);
+        console.log("Length of Variables with class \'sad\'"+$('.sad').length);
+
+    </script>
+
+</body>
+
+</html>
